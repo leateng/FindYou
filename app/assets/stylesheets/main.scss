@@ -1,0 +1,19 @@
+// Place all the styles related to the main controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.identify, .register {
+  height: 250px;
+  font-size: 40px;
+  text-align: center;
+  padding-top: 80px;
+}
+
+.identify {
+  background-color: greenyellow;
+}
+
+.register {
+  background-color: lightblue;
+}

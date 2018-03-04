@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <%= form_with(model: user, local: true, class: "form") do |form| %>
+        <% if user.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+              <ul>
+                <% user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= form.label :name, "名称" %>
+          <%= form.text_field :name, id: :user_name, class: "form-control" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :image, "头像" %>
+          <%= form.file_field :image, id: :user_image, type: "file" %>
+        </div>
+
+        <br>
+        <div class="actions">
+          <input type="button" class="btn btn-success btn-submit" value="submit">
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  jQuery(document).ready(function ($) {
+      var image_data;
+
+      $('#user_image').on('change', function(e){
+          const file = e.target.files[0];
+          if (!file) {
+              return;
+          }
+          new ImageCompressor(file, {
+              quality: .6,
+              success(result) {
+                  image_data = result;
+              },
+              error(e) {
+                  console.log(e.message);
+              },
+          });
+      });
+
+      $(".btn-submit").on("click", function () {
+          const formData = new FormData();
+          formData.append('file', image_data, image_data.name);
+          formData.append('name', $("#user_name").val());
+
+          $.ajax({
+              url: "/users.json",
+              type: "post",
+              data: formData,
+              processData:false,
+              contentType:false,
+              success:function(data){
+                  console.log(data);
+                  window.location.href = "/users";
+              }
+          });
+
+      })
+  });
+</script>
+
+
