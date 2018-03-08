@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root "main#index"
+  #root "main#index"
+  root "users#recognize"
   get 'main/index'
   resources :users do
     get :recognize, on: :collection

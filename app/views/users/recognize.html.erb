@@ -162,8 +162,22 @@
             if (xhr.readyState == 4 && xhr.status == 200) {
                 var jsonData = JSON.parse(xhr.responseText);
                 console.log(jsonData);
-                $("#recog_text").text(xhr.responseText);
-                $("#recog_text").show();
+
+                if(jsonData['user_info'] == '刘颖' && jsonData['scores'] > 75)
+                {
+                    alert('老婆， 节日快乐！！！ 爱你 ^_^');
+                }
+                else if(jsonData['user_info'] == 'liteng' && jsonData['scores'] > 75)
+                {
+                    alert('李螣大人... 您想干嘛！！！');
+                }
+                else
+                {
+                    alert("who  are you ?");
+                }
+
+                //$("#recog_text").text(xhr.responseText);
+                //$("#recog_text").show();
                 var imagedata = jsonData || {};
                 var text = '上传成功';
                 if(imagedata.image_name != undefined){
