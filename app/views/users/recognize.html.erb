@@ -163,11 +163,11 @@
                 var jsonData = JSON.parse(xhr.responseText);
                 console.log(jsonData);
 
-                if(jsonData['user_info'] == '刘颖' && jsonData['scores'] > 75)
+                if(jsonData['result'][0]['user_info'] == '刘颖' && jsonData['result'][0]['scores'] > 75)
                 {
                     alert('老婆， 节日快乐！！！ 爱你 ^_^');
                 }
-                else if(jsonData['user_info'] == 'liteng' && jsonData['scores'] > 75)
+                else if(jsonData['result'][0]['user_info'] == 'liteng' && jsonData['result'][0]['scores'] > 75)
                 {
                     alert('李螣大人... 您想干嘛！！！');
                 }
